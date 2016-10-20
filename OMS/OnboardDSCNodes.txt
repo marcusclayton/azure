@@ -1,0 +1,11 @@
+https://azure.microsoft.com/en-us/documentation/articles/log-analytics-windows-agents/
+
+
+1. create OMS workspace
+2. create Automation DSC config - install MMA agent.ps1
+3. import xdesiredstateconfiguration module
+4. onboard on-prem machines to azure automation dsc: https://azure.microsoft.com/en-us/documentation/articles/automation-dsc-onboarding/ ((using section Using the Azure Automation cmdlets)
+
+once machines are onboarded, push the MMAAgent DSC config to it...
+
+https://mcautomation.portal.mms.microsoft.com/?returnUrl=%2F#Workspace/overview/settings/details/index
