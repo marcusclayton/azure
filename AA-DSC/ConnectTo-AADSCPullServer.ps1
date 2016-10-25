@@ -2,7 +2,9 @@
 {
     Param(
         [Parameter(Mandatory = $True)]
-        [String] $computerName
+        [String] $computerName,
+        [ValidateSet('$True','$False')]
+        [String]$SafeMode = '$False'
     )
 
     $Cred = Get-AutomationPSCredential -Name 'Azure-ServicePrincipal'
@@ -62,8 +64,7 @@
     Get-AzureRmAutomationDscOnboardingMetaconfig @Params -Force -Verbose
     $mofDir = Get-Item ($DSCMetaConfigFolder + "\DSCMetaConfigs\")
     $mofDir = $mofDir.FullName
-    Set-DscLocalConfigurationManager -Path $mofDir -ComputerName $computerName -Credential $DomainCred -Verbose
+    Set-DscLocalConfigurationManager -Path $mofDir -ComputerName $computerName -Credential $DomainCred -WhatIf:$SafeMode
     
 
 }
-
