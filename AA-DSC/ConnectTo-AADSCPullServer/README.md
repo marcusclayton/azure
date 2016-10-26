@@ -15,3 +15,9 @@
 
 ## Running the... Runbook ##
 * Import the ConnectTo-AADSCPullServer.ps1 Runbook
+* Start the runbook, and pass the name of an on-prem server
+ * Requirements: Server must be joined to the same domain as the hyrbid worker, and allow PS remoting. A good test it to manully run an Invoke-Command from the hybrid worker targeting the new server with the "-ComputerName" parameter. 
+* Verify the runbook completes successfully with no errors. 
+
+
+![picture alt](https://mcautomationgitresources.blob.core.windows.net/images/ConnectTo-AADSCPullServer-JobSuccess.jpg "Runbook Success")
