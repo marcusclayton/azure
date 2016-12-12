@@ -13,6 +13,15 @@
         "Premium_LRS"
       ]
     },
+    "VMBackupPolicy" : {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "DefaultPolicy"
+    },
+    "tagCostCenter" : {
+      "type": "string",
+      "minLength": 1
+    },
     "myvm001Name": {
       "type": "string",
       "minLength": 1
@@ -67,7 +76,8 @@
       "dependsOn": [],
       "tags": {
         "displayName": "[parameters('uniqueprefix')]",
-        "ARMAutomated": "Yes"
+        "ARMAutomated": "Yes",
+        "CostCenter": "[parameters('tagCostCenter')]"
       },
       "properties": {
         "accountType": "[parameters('1432vmsType')]"
@@ -81,7 +91,8 @@
       "dependsOn": [],
       "tags": {
         "displayName": "testvnet01",
-        "ARMAutomated": "Yes"
+        "ARMAutomated": "Yes",
+        "CostCenter": "[parameters('tagCostCenter')]"
       },
       "properties": {
         "addressSpace": {
@@ -116,7 +127,8 @@
       ],
       "tags": {
         "displayName": "myvm001Nic",
-        "ARMAutomated": "Yes"
+        "ARMAutomated": "Yes",
+        "CostCenter": "[parameters('tagCostCenter')]"
       },
       "properties": {
         "ipConfigurations": [
@@ -146,7 +158,9 @@
       ],
       "tags": {
         "displayName": "myvm001",
-        "ARMAutomated": "Yes"
+        "ARMAutomated": "Yes",
+        "CostCenter": "[parameters('tagCostCenter')]",
+        "VMBackupPolicy": "[parameters('VMBackupPolicy')]"
       },
       "properties": {
         "hardwareProfile": {
@@ -190,7 +204,8 @@
           "dependsOn": [ ],
           "tags": {
               "displayName": "pip-vm001",
-              "ARMAutomated": "Yes"
+              "ARMAutomated": "Yes",
+              "CostCenter": "[parameters('tagCostCenter')]"
           },
           "properties": {
               "publicIPAllocationMethod": "Dynamic",
@@ -203,6 +218,10 @@
   "outputs": {
     "result": {
       "value": "Deployed from VSTS Build Release Pipeline",
+      "type": "string"
+    },
+    "VMBackupPolicy": {
+      "value": "[parameters('VMBackupPolicy')]",
       "type": "string"
     }
   }
