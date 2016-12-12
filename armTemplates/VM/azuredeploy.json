@@ -25,7 +25,7 @@
       "type": "string",
       "minLength": 1
     },
-    "adminPassword": {
+    "adminpasswd": {
       "type": "securestring"
     },
     "myvm001WindowsOSVersion": {
@@ -155,7 +155,7 @@
         "osProfile": {
           "computerName": "[parameters('myvm001Name')]",
           "adminUsername": "[parameters('myvm001AdminUsername')]",
-          "adminPassword": "[parameters('adminPassword')]"
+          "adminPassword": "[parameters('adminpasswd')]"
         },
         "storageProfile": {
           "imageReference": {
