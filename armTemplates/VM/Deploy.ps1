@@ -11,10 +11,12 @@ $Params = @{
     myvm001AdminUserName = "marcus";
     myvm001WindowsOSVersion = "2016-Datacenter-with-Containers";
     adminpasswd = $secret.SecretValue ;
-    tagCostCenter = "IT" ;
-    VMBackupPolicy = $backupPolicy ;
+    tagCostCenter = "IT";
+    VMBackupPolicy = $backupPolicy;
 }
 
-$rg = New-AzureRmResourceGroup -Name $Params.rg -Location $Params.rgLocation -Verbose -Force -ErrorAction Stop
+$rg = New-AzureRmResourceGroup -Name $resourceGroup -Location $resourceGroupLocation -Verbose -Force -ErrorAction Stop
 
 $deployment = New-AzureRmResourceGroupDeployment -Name "AzureDeployment-$(get-date -Format "yyyy-dd-mm-hh-mm-ss")" -Mode Incremental -TemplateParameterObject $Params -ResourceGroupName $resourceGroup -TemplateUri $TemplateURI -ErrorVariable deploymentError -Verbose -Force
+
+$enableVMBackup = Enable-AzureRmRecoveryServicesBackupProtection -Policy $backupPolicy -Name $something -ResourceGroupName $something -Verbose
