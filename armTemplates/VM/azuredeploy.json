@@ -15,7 +15,7 @@
     },
     "VMBackupPolicy" : {
       "type": "string",
-      "defaultValue": "DefaultPolicy"
+      "minLength": 1
     },
     "tagCostCenter" : {
       "type": "string",
