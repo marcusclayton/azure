@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "pipvm001DnsName" :{
+            "value": "mcautodev04747"
+        },
+        "uniqueprefix" : {
+            "value": "1432vms"
+        },
+        "myvm001Name" : {
+            "value": "vm-dev-0001"
+        },
+        "myvm001AdminUserName" : {
+            "value": "marcus"
+        },
+        "myvm001WindowsOSVersion" : {
+            "value": "2016-Datacenter-with-Containers"
+        }
+    }
+}

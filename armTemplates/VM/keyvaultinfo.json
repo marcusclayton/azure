@@ -20,6 +20,10 @@
           "uri": "https://raw.githubusercontent.com/marcusclayton/azure/master/armTemplates/VM/azuredeploy.json",
           "contentVersion": "1.0.0.0"
         },
+        "parametersLink": {
+          "uri":"https://raw.githubusercontent.com/marcusclayton/azure/master/armTemplates/VM/azuredeploy.parameters-test.json",
+          "contentVersion":"1.0.0.0"
+       },
         "parameters": {
           "adminPassword": {
             "reference": {
