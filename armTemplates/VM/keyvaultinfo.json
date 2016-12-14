@@ -7,6 +7,9 @@
       },
       "secretName": {
         "type": "string"
+      },
+      "vaultResourceGroupName" : {
+        "type": "string"
       }
     },
     "resources": [
@@ -24,7 +27,7 @@
           "adminPassword": {
             "reference": {
               "keyVault": {
-                "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', parameters('vaultName'))]"
+                "id": "[concat(resourceId(parameters('vaultResourceGroupName'), '/providers/Microsoft.KeyVault/vaults/', parameters('vaultName'))]"
               },
               "secretName": "[parameters('secretName')]"
             }
