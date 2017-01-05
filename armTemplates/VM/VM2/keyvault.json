@@ -8,7 +8,7 @@
       "secretName": {
           "type": "string"
       },
-      "keyVaultResourceGroup" :{
+      "keyVaultResourceGroup": {
           "type": "string"
       },
     "1432vmsType": {
