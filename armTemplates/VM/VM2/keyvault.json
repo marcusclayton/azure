@@ -119,7 +119,7 @@
       "pipvm001DnsName": {
           "type": "string",
           "minLength": 1
-      }        
+      }
       }
       }
     },
