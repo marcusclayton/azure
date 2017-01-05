@@ -8,6 +8,9 @@
       "secretName": {
           "type": "string"
       },
+      "keyVaultResourceGroup" :{
+          "type": "string"
+      }
     "1432vmsType": {
       "type": "string",
       "defaultValue": "Standard_LRS",
@@ -67,7 +70,8 @@
     "myvm001SubnetRef": "[concat(variables('myvm001VnetID'), '/subnets/', variables('testvnet01Subnet1Name'))]",
     "myvm001StorageAccountContainerName": "vhds",
     "myvm001NicName": "[concat(parameters('myvm001Name'), 'NetworkInterface')]",
-    "pip-vm001Name": "pip-vm001"
+    "pip-vm001Name": "pip-vm001",
+    "keyVaultResourceID": "[concat(subscription().id,'/resourceGroups/',parameters('keyVaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', parameters('vaultName'))]"
   },
   "resources": [
     {
@@ -85,7 +89,7 @@
           "adminpasswd": {
             "reference": {
               "keyVault": {
-                "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', parameters('vaultName'))]"
+                "id": "[variables('keyVaultResourceID')]"
               },
               "secretName": "[parameters('secretName')]"
             }
