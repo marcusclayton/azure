@@ -91,34 +91,28 @@
             }
           },
     "1432vmsType": {
-      "type": "string"
+      "value": "[parameters('1432vmsType')]"
     },
     "VMBackupPolicy" : {
-      "type": "string",
-      "minLength": 1
+      "value": "[parameters('VMBackupPolicy')]"
     },
     "tagCostCenter" : {
-      "type": "string",
-      "minLength": 1
+      "value": "[parameters('tagCostCenter')]"
     },
     "myvm001Name": {
-      "type": "string",
-      "minLength": 1
+      "value": "[parameters('myvm001Name')]"
     },
     "uniqueprefix": {
-      "type": "string",
-      "minLength": 1
+      "value": "[parameters('uniqueprefix')]"
     },
     "myvm001AdminUserName": {
-      "type": "string",
-      "minLength": 1
+      "value": "[parameters('myvm001AdminUserName')]"
     },
     "myvm001WindowsOSVersion": {
-      "type": "string"
+      "value": "[parameters('myvm001WindowsOSVersion')]"
     },
       "pipvm001DnsName": {
-          "type": "string",
-          "minLength": 1
+      "value": "[parameters('pipvm001DnsName')]"
       }
       }
       }
