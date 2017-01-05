@@ -82,7 +82,7 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "adminPassword": {
+          "adminpasswd": {
             "reference": {
               "keyVault": {
                 "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', parameters('vaultName'))]"
