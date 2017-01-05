@@ -10,7 +10,7 @@
       },
       "keyVaultResourceGroup" :{
           "type": "string"
-      }
+      },
     "1432vmsType": {
       "type": "string",
       "defaultValue": "Standard_LRS",
