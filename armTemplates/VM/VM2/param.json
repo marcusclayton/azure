@@ -1,0 +1,31 @@
+    {
+    "1432vmsType": {
+      "type": "string"
+    },
+    "VMBackupPolicy" : {
+      "type": "string",
+      "minLength": 1
+    },
+    "tagCostCenter" : {
+      "type": "string",
+      "minLength": 1
+    },
+    "myvm001Name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "uniqueprefix": {
+      "type": "string",
+      "minLength": 1
+    },
+    "myvm001AdminUserName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "myvm001WindowsOSVersion": {
+      "type": "string"
+    },
+      "pipvm001DnsName": {
+          "type": "string",
+          "minLength": 1
+      }

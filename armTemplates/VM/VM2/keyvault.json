@@ -1,0 +1,137 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+      "vaultName": {
+          "type": "string"
+      },
+      "secretName": {
+          "type": "string"
+      },
+    "1432vmsType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_ZRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Premium_LRS"
+      ]
+    },
+    "VMBackupPolicy" : {
+      "type": "string",
+      "minLength": 1
+    },
+    "tagCostCenter" : {
+      "type": "string",
+      "minLength": 1
+    },
+    "myvm001Name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "uniqueprefix": {
+      "type": "string",
+      "minLength": 1
+    },
+    "myvm001AdminUserName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "myvm001WindowsOSVersion": {
+      "type": "string",
+      "defaultValue": "2016-Datacenter-with-Containers",
+      "allowedValues": [
+        "2012-R2-Datacenter",
+        "2016-Datacenter-with-Containers"
+      ]
+    },
+      "pipvm001DnsName": {
+          "type": "string",
+          "minLength": 1
+      }
+  },
+  "variables": {
+    "1432vmsName": "[concat(parameters('uniqueprefix'), uniqueString(resourceGroup().id))]",
+    "testvnet01Prefix": "10.0.0.0/16",
+    "testvnet01Subnet1Name": "Subnet-1",
+    "testvnet01Subnet1Prefix": "10.0.0.0/24",
+    "testvnet01Subnet2Name": "Subnet-2",
+    "testvnet01Subnet2Prefix": "10.0.1.0/24",
+    "myvm001ImagePublisher": "MicrosoftWindowsServer",
+    "myvm001ImageOffer": "WindowsServer",
+    "myvm001OSDiskName": "myvm001OSDisk",
+    "myvm001VmSize": "Basic_A0",
+    "myvm001VnetID": "[resourceId('Microsoft.Network/virtualNetworks', 'testvnet01')]",
+    "myvm001SubnetRef": "[concat(variables('myvm001VnetID'), '/subnets/', variables('testvnet01Subnet1Name'))]",
+    "myvm001StorageAccountContainerName": "vhds",
+    "myvm001NicName": "[concat(parameters('myvm001Name'), 'NetworkInterface')]",
+    "pip-vm001Name": "pip-vm001"
+  },
+  "resources": [
+    {
+
+      "apiVersion": "2015-01-01",
+      "name": "nestedTemplate",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "incremental",
+        "templateLink": {
+          "uri": "https://raw.githubusercontent.com/marcusclayton/azure/master/armTemplates/VM/VM2/newVM.json",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "adminPassword": {
+            "reference": {
+              "keyVault": {
+                "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', parameters('vaultName'))]"
+              },
+              "secretName": "[parameters('secretName')]"
+            }
+          },
+    "1432vmsType": {
+      "type": "string"
+    },
+    "VMBackupPolicy" : {
+      "type": "string",
+      "minLength": 1
+    },
+    "tagCostCenter" : {
+      "type": "string",
+      "minLength": 1
+    },
+    "myvm001Name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "uniqueprefix": {
+      "type": "string",
+      "minLength": 1
+    },
+    "myvm001AdminUserName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "myvm001WindowsOSVersion": {
+      "type": "string"
+    },
+      "pipvm001DnsName": {
+          "type": "string",
+          "minLength": 1
+      }        
+      }
+      }
+    },
+  ],
+  "outputs": {
+    "result": {
+      "value": "Deployed from VSTS Build Release Pipeline",
+      "type": "string"
+    },
+    "VMBackupPolicy": {
+      "value": "[parameters('VMBackupPolicy')]",
+      "type": "string"
+    }
+  }
+}
