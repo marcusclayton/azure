@@ -1,5 +1,5 @@
 #$secret = Get-AzureKeyVaultSecret -VaultName temp -SecretName adminpasswd
-$vault = (Get-AzureRmKeyVault) | select VaultName,Tags | Out-GridView -Title "Select a Key Vault..." -PassThru
+$vault = (Get-AzureRmKeyVault) | select VaultName,ResourceGroupName,Tags | Out-GridView -Title "Select a Key Vault..." -PassThru
 $secret = (Get-AzureKeyVaultSecret -VaultName $vault.VaultName) | select Name,VaultName,Version,Tags | Out-GridView -Title "Select a Secret..." -PassThru
 $TemplateURI = "https://raw.githubusercontent.com/marcusclayton/azure/master/armTemplates/VM/VM2/keyvault.json"
 $resourceGroup = "armkeyvaulttest001"
@@ -9,12 +9,15 @@ Set-AzureRmRecoveryServicesVaultContext -Vault $recoveryVault -Verbose
 $backupPolicy = Get-AzureRmRecoveryServicesBackupProtectionPolicy | out-gridview -title "Select a Backup Protection Policy..." -PassThru
 
 $Params = @{
+    vaultName = $vault.vaultName ;
+    secretName = $secret.name ;
+    keyVaultResourceGroup = $vault.ResourceGroupName ;
     pipvm001DnsName = "mcautodev04747" ;
     uniqueprefix = "1432vms";
     myvm001Name = "vm-dev-0001";
     myvm001AdminUserName = "marcus";
     myvm001WindowsOSVersion = "2016-Datacenter-with-Containers";
-    VMBackupPolicy = $backupPolicy ;
+    VMBackupPolicy = $backupPolicy.name ;
     tagCostCenter = "IT";
 }
 
