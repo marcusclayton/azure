@@ -23,6 +23,36 @@ $ConfigData = @{
 
 Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "Automation" -AutomationAccountName "Automation" -ConfigurationName "ItWorks" -ConfigurationData $ConfigData -Verbose
 
+$ConfigData = @{
+    AllNodes = @(
+        @{
+            NodeName = "aadsc01"
+            Role = "MgmtNode"
+         },
+         @{
+            NodeName = "aadsc02"
+         },
+         @{
+            NodeName = "aadsc03"
+            Role = @("AppNode","Base")
+         }
+     )
+
+    NonNodeData = @(
+        @{
+            Uri = "https://raw.githubusercontent.com/marcusclayton/temp/master/azuredeploy.json"
+            Path = "C:\temp\armunique.json"
+        }
+    )
+}
+
+Get-AzureRmAutomationAccount -ResourceGroupName automation -AutomationAccountName automation -OutVariable automation
+$automation | Get-AzureRmAutomationDscNode -Name aadsc02 -OutVariable dscnode
+$automation | Get-AzureRmAutomationDscNodeConfiguration -Name itworks.basecfg -OutVariable nodeconfig
+$nodeconfig
+$dscnode
+$dscnode | Set-AzureRmAutomationDscNode -NodeConfigurationName $nodeconfig.name -Force -Verbose
+invoke-command -ComputerName aadsc02 -ScriptBlock {Update-DscConfiguration -Wait -Verbose}
 
 ###
 #Invoking a consistency check
