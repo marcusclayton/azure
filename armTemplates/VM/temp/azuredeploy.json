@@ -1,0 +1,121 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageAcctType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_ZRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Premium_LRS"
+      ]
+    },
+    "VMBackupPolicy" : {
+      "type": "string",
+      "minLength": 1
+    },
+    "tagCostCenter" : {
+      "type": "string",
+      "minLength": 1
+    },
+    "vmname": {
+      "type": "string",
+      "minLength": 1
+    },
+    "uniqueprefix": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adminName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adminpasswd": {
+      "type": "securestring"
+    },
+    "osVersion": {
+      "type": "string",
+      "defaultValue": "2016-Datacenter-with-Containers",
+      "allowedValues": [
+        "2012-R2-Datacenter",
+        "2016-Datacenter-with-Containers"
+      ]
+    },
+      "dnsname": {
+          "type": "string",
+          "minLength": 1
+      }
+  },
+  "variables": {
+// VARIABLES REMOVED, BUT WOULD GO HERE
+  },
+  "resources": [
+    {
+//RESOURCE 1
+    },
+    {
+//RESOURCE 2
+    },
+    {
+//RESOURCE 3
+    },
+    {
+      "name": "[parameters('vmname')]",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-06-15",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('storageacct'))]",
+        "[resourceId('Microsoft.Network/networkInterfaces', variables('vmnic'))]"
+      ],
+      "tags": {
+        "displayName": "myvm001",
+        "ARMAutomated": "Yes",
+        "CostCenter": "[parameters('tagCostCenter')]",
+        "VMBackupPolicy": "[parameters('VMBackupPolicy')]"
+      },
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[variables('vmsize')]"
+        },
+        "osProfile": {
+          "computerName": "[parameters('vmname')]",
+          "adminUsername": "[parameters('adminName')]",
+          "adminPassword": "[parameters('adminpasswd')]"
+        },
+        "storageProfile": {
+// details
+          },
+          "osDisk": {
+// details
+          }
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('myvm001NicName'))]"
+            }
+          ]
+        }
+      }
+    },
+      {
+          "name": "[variables('pip-vm001Name')]",
+          "type": "Microsoft.Network/publicIPAddresses",
+// details
+      }
+  ],
+  "outputs": {
+    "result": {
+      "value": "Deployed from VSTS Build Release Pipeline",
+      "type": "string"
+    },
+    "VMBackupPolicy": {
+      "value": "[parameters('VMBackupPolicy')]",
+      "type": "string"
+    }
+  }
+}
