@@ -6,6 +6,8 @@ $ConfigData = @{
          },
          @{
             NodeName = "aadsc02"
+            Role = "TestBox"
+            Feature = "RSAT-DNS-Server"
          },
          @{
             NodeName = "aadsc03"
@@ -15,6 +17,7 @@ $ConfigData = @{
 
     NonNodeData = @(
         @{
+            SomeMessage = "Message From Config Data"
             Uri = "https://some.uri"
             Path = "C:\temp\armunique.json"
         }
@@ -23,6 +26,6 @@ $ConfigData = @{
 
 $rg = "automation"
 $account = "automation"
-$configName = "itWorks"
+$configName = "itWorks2"
 
 Start-AzureRmAutomationDscCompilationJob -ResourceGroupName $rg -AutomationAccountName $account -ConfigurationName $configName -ConfigurationData $ConfigData -Verbose

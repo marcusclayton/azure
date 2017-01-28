@@ -3,8 +3,8 @@
     Param(
         [Parameter(Mandatory = $True)]
         [String] $computerName,
-        [ValidateSet('$True','$False')]
-        [String]$SafeMode = '$False'
+        [Parameter(Mandatory=$true)]
+        [boolean] $SafeMode
     )
 
     $Cred = Get-AutomationPSCredential -Name 'Azure-ServicePrincipal'
