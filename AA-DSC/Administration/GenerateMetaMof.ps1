@@ -1,3 +1,4 @@
+$workingdir = "C:\GitRepos\azure\AA-DSC\Administration\"
 $Keys = $AAAcount = "Automation"
 $rg = "automation"
 
