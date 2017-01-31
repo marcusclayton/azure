@@ -9,8 +9,6 @@ Configuration Parameters
         [string[]] $FeatureList
     )
 
-
-
     Import-DscResource -ModuleName xPSDesiredStateConfiguration
 
     Node ($Node + $Version)
