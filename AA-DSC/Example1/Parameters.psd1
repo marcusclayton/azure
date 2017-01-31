@@ -1,5 +1,5 @@
 $Params = @{
-    "Version" = "1"
+    "Version" = "3"
     "Node" = "Mgmt"
     "FeatureList" = "Telnet-Client","RSAT-ADCS-Mgmt","RSAT-Clustering"
 }
