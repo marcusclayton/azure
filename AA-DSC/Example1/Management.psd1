@@ -4,7 +4,7 @@ $ConfigData = @{
 
     NonNodeData = @(
         @{
-            Version = "2"
+            Version = "1"
             Node = "Mgmt"
             FeatureList = @("Telnet-Client","RSAT-ADCS-Mgmt","RSAT-Clustering"
             )

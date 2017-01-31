@@ -6,7 +6,7 @@ Configuration Parameters
         [Parameter(Mandatory=$true)]
         [string] $Node,
         [Parameter(Mandatory=$true)]
-        [string] $FeatureList
+        [string[]] $FeatureList
     )
 
 
